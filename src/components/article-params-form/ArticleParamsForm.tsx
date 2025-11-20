@@ -2,16 +2,14 @@ import styles from './ArticleParamsForm.module.scss';
 import clsx from 'clsx';
 import { useState } from 'react';
 
-// Добавляем импорты компонентов
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
-import { ArrowButton } from 'src/components/arrow-button';
+import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 
-// Добавляем импорт типов и констант
-import { OnClick } from 'src/components/arrow-button/ArrowButton';
+import { OnClick } from 'src/ui/arrow-button/ArrowButton';
 import {
 	OptionType,
 	fontFamilyOptions,
@@ -23,10 +21,8 @@ import {
 } from 'src/constants/articleProps';
 import { IAllOptions } from 'src/index';
 
-// Добавляем тип для функции изменения селекта
 export type ChangeSelectFn = (selection: OptionType) => void;
 
-// Обновляем интерфейс пропсов
 interface PropsArticleParamsForm {
 	toggleOpenFn: OnClick;
 	openState: boolean;
@@ -38,16 +34,13 @@ export const ArticleParamsForm = ({
 	openState,
 	setPageState,
 }: PropsArticleParamsForm) => {
-	// Добавляем состояние формы
 	const [formState, setFormState] = useState<IAllOptions>(defaultArticleState);
 
-	// Функция сброса к значениям по умолчанию
-	function setDefaultOptions() {
+	const handleReset = () => {
 		setFormState(defaultArticleState);
 		setPageState(defaultArticleState);
-	}
+	};
 
-	// Функция отправки формы
 	function submitForm(evt: React.SyntheticEvent) {
 		evt.preventDefault();
 		setPageState(formState);
@@ -55,7 +48,7 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton toggleOpenFn={toggleOpenFn} openState={openState} />
+			<ArrowButton isOpen={openState} onClick={toggleOpenFn} />
 			<aside
 				className={clsx({
 					[styles.container]: true,
@@ -120,8 +113,7 @@ export const ArticleParamsForm = ({
 						}
 					/>
 					<div className={styles.bottomContainer}>
-						{/* Исправляем тип кнопок согласно вашему Button компоненту */}
-						<Button title='Сбросить' type='clear' onClick={setDefaultOptions} />
+						<Button title='Сбросить' type='clear' onClick={handleReset} />
 						<Button title='Применить' type='apply' />
 					</div>
 				</form>
