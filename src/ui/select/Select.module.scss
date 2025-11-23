@@ -1,5 +1,6 @@
 .selectWrapper {
 	position: relative;
+	margin-bottom: 30px;
 }
 
 .container {
@@ -9,12 +10,17 @@
 }
 
 .arrow {
-	position: absolute;
-	top: 50%;
-	right: 6px;
+	flex-shrink: 0;
+
+	// position: absolute;
+	// top: 50%;
+	// right: 6px;
+	// width: 24px;
+	// margin-top: -12px;
+	// transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
 	width: 24px;
-	margin-top: -12px;
-	transition: transform 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+	height: 24px;
+	transition: transform 0.2s ease-in-out;
 }
 
 .placeholder {
